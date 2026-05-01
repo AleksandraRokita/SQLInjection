@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Logowanie do Portalu Pracowniczego</h2>
+    <p>Zaloguj się używając poświadczeń z domeny CorpNet. W przypadku problemów z autoryzacją skontaktuj się z działem Helpdesk (wewn. 404).</p>
+    
+    {% if user %}
+        <div class="alert alert-success">
+            <h3>Autoryzacja przebiegła pomyślnie</h3>
+            <p>Użytkownik: <strong>{{ user['username'] }}</strong></p>
+            <p>Poziom dostępu: <strong>{{ 'Administrator Systemu' if user['is_admin'] == 1 else 'Standardowy' }}</strong></p>
+        </div>
+    {% else %}
+        <div style="max-width: 400px; margin: 40px auto 0; background: var(--surface); padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid rgba(85,53,24,0.05);">
+            <form method="POST">
+                <div class="form-group">
+                    <label>Identyfikator użytkownika:</label>
+                    <input type="text" name="username" placeholder="np. jkowalski">
+                </div>
+                <div class="form-group">
+                    <label>Hasło sieciowe:</label>
+                    <input type="password" name="password" placeholder="Wprowadź hasło">
+                </div>
+                <button type="submit" style="width: 100%; margin-top: 10px;">Zaloguj się do systemu</button>
+            </form>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="error-box">
+            System odrzucił poświadczenia: {{ error }}
+        </div>
+    {% endif %}
+
+    {% if query %}
+        <div class="query-box">
+            <div class="system-log">
+                [SYS_LOG] Auth query execution trace:<br>
+                {{ query }}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

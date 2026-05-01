@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Katalog Pracowników CorpNet</h2>
+<p>Wyszukaj profil pracownika podając jego wewnętrzny numer identyfikacyjny (ID).</p>
+
+    <div style="background: var(--surface); padding: 30px; border-radius: var(--radius-lg); border: 1px solid rgba(85,53,24,0.05); margin-bottom: 35px; box-shadow: var(--shadow-sm);">
+        <form method="GET">
+            <label>Numer ID (CorpID):</label>
+            <div style="display: flex; gap: 15px; align-items: stretch;">
+                <input type="text" name="id" value="{{ request.args.get('id', '') }}"
+                    placeholder="Wprowadź ID (np. 1, 2, 3)" style="flex: 1; margin: 0;">
+                <button type="submit" style="width: auto; margin: 0; display: flex; align-items: center; justify-content: center;">Wyświetl akta</button>
+            </div>
+        </form>
+    </div>
+
+{% if executed_query %}
+<div class="query-box">
+    <div class="system-log">
+        [SYS_LOG] Profile lookup trace:<br>
+        {{ executed_query }}
+    </div>
+</div>
+{% endif %}
+
+{% if error %}
+<div class="error-box" style="font-family: monospace; font-size: 13px;">
+    <strong style="color: #553518;">[CRITICAL] SYSTEM EXCEPTION / DATABASE CONNECTOR FATAL ERROR:</strong><br>
+    <span style="color: #dc3545;">{{ error }}</span><br>
+    <span style="color: #999; font-size: 11px;">Skontaktuj się z administratorem przekazując powyższy kod błędu.</span>
+</div>
+{% endif %}
+
+{% if user %}
+<div
+    style="margin-top: 20px; padding: 25px; background: #fff; border: 1px solid var(--mustard); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+    <h3 style="margin-top: 0; color: var(--dark-brown); border-bottom: 1px solid #eee; padding-bottom: 10px;">Akta
+        Pracownicze - Profil Osobisty</h3>
+    <div style="display: grid; grid-template-columns: 150px 1fr; gap: 10px; margin-top: 15px;">
+        <strong style="color: #666;">CorpID:</strong> <span>{{ user['id'] }}</span>
+        <strong style="color: #666;">Konto Domenowe:</strong> <span>CORPNET\{{ user['username'] }}</span>
+        <strong style="color: #666;">Grupa Dostępu:</strong>
+        {% if user['is_admin'] == 1 %}
+            <span style="font-weight: 500; color: red;">Administrator Domeny</span>
+        {% else %}
+            <span style="font-weight: 500; color: inherit;">Użytkownik Standardowy</span>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

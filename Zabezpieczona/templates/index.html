@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Witaj w systemie CorpNet</h2>
+    <div class="alert alert-info">
+        <strong>Informacja Systemowa:</strong> Trwa migracja danych do nowej bazy (Faza 2). Niektóre funkcje mogą działać z opóźnieniem.
+    </div>
+    
+    <p>System CorpNet służy do zarządzania zasobami firmy oraz weryfikacji tożsamości pracowników. Z tego poziomu masz dostęp do kluczowych modułów operacyjnych:</p>
+    <ul>
+        <li><strong>Portal Pracowniczy:</strong> Zabezpieczony dostęp do wewnętrznych zasobów firmy. Wymaga ważnych poświadczeń z Active Directory.</li>
+        <li><strong>Katalog Produktów:</strong> Wyszukiwarka stanu magazynowego zintegrowana z główną bazą produktową.</li>
+        <li><strong>Katalog Pracowników:</strong> Baza danych struktury organizacyjnej z dostępem do profili publicznych personelu.</li>
+        <li><strong>Weryfikacja Statusu:</strong> Moduł HR służący do weryfikacji aktywności kontraktów pracowniczych w systemie zewnętrznym.</li>
+    </ul>
+
+    <div style="margin-top: 30px; padding: 20px; background: #fafafa; border: 1px solid #ddd; border-radius: 4px;">
+        <h3 style="margin-top: 0; font-size: 16px;">Ostatnie komunikaty z działu IT:</h3>
+        <p style="font-size: 14px; color: #553518;"><em>Bieżące prace konserwacyjne. Prosimy ignorować wszelkie nieoczekiwane komunikaty o błędach podczas wyszukiwania i nie modyfikować parametrów URL ręcznie. Administratorzy monitorują logi zapytań.</em></p>
+    </div>
+{% endblock %}

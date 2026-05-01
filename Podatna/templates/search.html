@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Wewnętrzny Katalog Produktów</h2>
+    <p>Wyszukaj asortyment w głównej bazie zaopatrzenia. Użyj nazwy lub fragmentu opisu produktu.</p>
+    
+    <div style="background: var(--surface); padding: 30px; border-radius: var(--radius-lg); border: 1px solid rgba(85,53,24,0.05); margin-bottom: 35px; box-shadow: var(--shadow-sm);">
+        <form method="GET">
+            <label>Słowo kluczowe:</label>
+            <div style="display: flex; gap: 15px; align-items: stretch;">
+                <input type="text" name="q" value="{{ query }}" placeholder="np. Laptop" style="flex: 1; margin: 0;">
+                <button type="submit" style="width: auto; margin: 0; display: flex; align-items: center; justify-content: center;">Wyszukaj w bazie</button>
+            </div>
+        </form>
+    </div>
+
+    {% if executed_query %}
+        <div class="query-box">
+            <div class="system-log">
+                [SYS_LOG] DB search query trace:<br>
+                {{ executed_query }}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if results %}
+        <table>
+            <tr>
+                <th>Nazwa Asortymentu</th>
+                <th>Specyfikacja / Opis</th>
+                <th>Cena Netto (PLN)</th>
+            </tr>
+            {% for row in results %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% elif query %}
+        <div class="alert alert-info" style="margin-top: 15px;">
+            Brak wyników wyszukiwania dla podanej frazy. Sprawdź poprawność wpisanego hasła.
+        </div>
+    {% endif %}
+{% endblock %}
