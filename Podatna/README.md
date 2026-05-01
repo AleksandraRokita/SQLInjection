@@ -1,4 +1,4 @@
-# Laboratorium SQL Injection: Aplikacja "CorpNet"
+# SQL Injection: Aplikacja "CorpNet"
 
 Poniżej znajduje się szczegółowy poradnik krok po kroku, opisujący jak przeprowadzić ataki SQL Injection na specjalnie spreparowaną aplikację. Z zewnątrz wygląda ona jak prawdziwy, nowoczesny system korporacyjny, jednak celowo pozostawiono w niej luki bezpieczeństwa.
 
