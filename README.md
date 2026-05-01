@@ -1,6 +1,6 @@
 # Projekt Edukacyjny: Podatności SQL Injection
 
-Niniejsze repozytorium stanowi projekt edukacyjny dotyczący podatności **SQL Injection**, oparty na materiałach, których autorką jest **Aleksandra Rokita**.
+Niniejsze repozytorium stanowi projekt edukacyjny dotyczący podatności **SQL Injection**.
 
 ## 1. Wprowadzenie i Mechanizm Działania
 
